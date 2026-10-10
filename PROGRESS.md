@@ -1384,3 +1384,30 @@
 - 既有 `.venv` 指向不存在的 Python 3.12 基礎執行檔；下次測試前需修復／重建環境，本次不處理。
 - 本次未驗證 Docker 執行狀態、套件重新安裝或測試執行；本機 Docker Compose 設定不在候選檔案中，需另行準備。
 - 新增或變動檔案、未知格式、編碼憑證及其他個資仍可能超出靜態規則辨識範圍；首次 commit 前若發現任何不確定敏感資料，應停止並詢問使用者。
+
+
+## Day 24 — GitHub README Portfolio Optimization
+
+### 本次完成事項
+
+- 將 README 改為適合公開 GitHub 的個人 QA Automation Engineer Portfolio 首頁，以繁體中文搭配既有英文技術術語。
+- 依序整理 Project Overview、Tech Stack & Key Features、E2E Workflow、Test Coverage、Latest Test Results、Project Structure、Setup & Execution、Security & Limitations、Development History。
+- 核對現有 8 支正式測試：7 支 Smoke、1 支 Bank Wire E2E；Coverage 表格連至實際測試檔，明確列出會員、Cart / Checkout 與訂單副作用。
+- E2E 使用同一當次動態 Order Reference；Frontend 每次只建立一筆訂單，Admin / Orders API / MySQL 驗證同筆資料。API / DB 的 Status ID 比對與 Admin 狀態文字驗證分開說明，金額保留 Decimal 精確比較。
+- 保留 Day 22 Full Regression 歷史結果：8 Passed、0 Failed、0 Skipped、71.06 seconds；Day 24 未重新執行測試。
+- 保留 Windows PowerShell 安裝與 pytest / Allure raw results 指令；以存在檢查避免重建既有 `.venv` 或覆寫 `.env`，說明自行準備 Docker PrestaShop + MySQL 與既有測試資料的條件。
+- 移除 README 中 Day 23「Python 3.12 路徑失效、需重建 .venv」的過時描述。Day 24 先前診斷已確認 Python 3.12.10、pyvenv.cfg 路徑與現有 .venv 正常，pytest、playwright、requests、allure-pytest、mysql-connector-python 均可匯入。
+- 更正說明：Day 23 的環境損壞判定過於確定；Day 24 診斷發現一般 Codex 沙箱有 setup refresh 錯誤，核准的沙箱外執行正常，支持執行環境／權限差異，但未確定 Day 23 失敗的完整原因。Day 1～23 原始紀錄保留，不覆寫歷史。
+- README 明確保留 .env 不提交、API GET / DB SELECT、Trace / Screenshot / Video 停用、Allure 僅 raw results，以及歷史產物／未知憑證未全面清查的限制；未新增虛構 CI/CD、HTML Report、截圖或 Badge。
+- 詳細歷程透過 README 的相對連結導向 PROGRESS，避免首頁重複開發紀錄。
+
+### 修改範圍與驗證
+
+- 僅修改 `README.md`、`PROGRESS.md`，保留 Day 1～23 原始內容；未修改 Python、POM、Fixtures、Tests、Assertions、requirements、.gitignore 或 .env。
+- 本次只做文件整理與靜態核對，不執行 pytest、Docker、git add、git commit 或 git push。
+- 完成後檢查章節順序、Markdown 表格與 code fences、目錄及相對連結；以檔案雜湊與 Git diff 確認修改範圍及歷史保留。
+
+### 尚未完成事項與下一步
+
+- 文件尚未提交或推送；下一步為 Code Review，確認後另行授權下一次 Commit。
+- Day 22 結果仍是最近已記錄的完整 Regression；本次文件變更不代表重新驗證業務流程或 Demo 環境可重建。
